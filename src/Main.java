@@ -431,6 +431,237 @@ public class Main {
     }
 }
 
+/*
+Transponer una matriz
+int[][] transpuesta = new int[matrix[0].length][matrix.length];
+
+for (int i = 0; i < matrix.length; i++) {
+        for (int j = 0; j < matrix[i].length; j++) {
+transpuesta[j][i] = matrix[i][j];
+        }
+      }
+
+        for (int i = 0; i < transpuesta.length; i++) {
+        for (int j = 0; j < transpuesta[i].length; j++) {
+        System.out.print(transpuesta[i][j] + " ");
+    }
+            System.out.println();
+}
+======================================================================================
+
+
+Mostrar los elementos por debajo de la diagonal principal
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < i; j++) { // j < i → debajo de la diagonal
+        System.out.print(matrix[i][j] + " ");
+    }
+}
+
+========================================================================================
+
+Zig-zag o recorrido en “serpiente” de una matriz
+for (int i = 0; i < matrix.length; i++) {
+    if (i % 2 == 0) {
+        // izquierda a derecha
+        for (int j = 0; j < matrix[i].length; j++) {
+            System.out.print(matrix[i][j] + " ");
+        }
+    } else {
+        // derecha a izquierda
+        for (int j = matrix[i].length - 1; j >= 0; j--) {
+            System.out.print(matrix[i][j] + " ");
+        }
+    }
+}
+
+===================================================================================
+
+Encontrar el elemento que aparece más veces en un array
+
+int[] arr = {1, 3, 2, 3, 4, 3, 5};
+int maxCount = 0;
+int element = arr[0];
+
+for (int i = 0; i < arr.length; i++) {
+    int count = 0;
+    for (int j = 0; j < arr.length; j++) {
+        if (arr[j] == arr[i]) count++;
+    }
+    if (count > maxCount) {
+        maxCount = count;
+        element = arr[i];
+    }
+}
+==============================================================================
+Ejemplo: Desplazar columnas a la derecha
+
+public static void desplazarColumnas(int[][] matriz) {
+    int filas = matriz.length;
+    int columnas = matriz[0].length;
+
+    // Guardamos la última columna
+    int[] ultimaColumna = new int[filas];
+    for (int i = 0; i < filas; i++) {
+        ultimaColumna[i] = matriz[i][columnas - 1];
+    }
+
+    // Desplazamos todas las columnas una posición a la derecha
+    for (int j = columnas - 1; j > 0; j--) {
+        for (int i = 0; i < filas; i++) {
+            matriz[i][j] = matriz[i][j - 1];
+        }
+    }
+
+    // Ponemos la última columna como la primera
+    for (int i = 0; i < filas; i++) {
+        matriz[i][0] = ultimaColumna[i];
+    }
+}
+
+// Mostrar matriz
+public static void imprimirMatriz(int[][] matriz) {
+    for (int i = 0; i < matriz.length; i++) {
+        for (int j = 0; j < matriz[i].length; j++) {
+            System.out.print(matriz[i][j] + " ");
+        }
+        System.out.println();
+    }
+}
+
+public static void main(String[] args) {
+    int[][] matriz = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    System.out.println("Matriz original:");
+    imprimirMatriz(matriz);
+
+    desplazarColumnas(matriz);
+
+    System.out.println("Matriz tras desplazar columnas:");
+    imprimirMatriz(matriz);
+}
+
+================================================================================
+
+//MOver hacia la derecha
+
+int[] arr = {1, 2, 3, 4, 5};
+
+int ultimo = arr[arr.length - 1];  // guardamos el último
+for (int i = arr.length - 1; i > 0; i--) {
+    arr[i] = arr[i - 1];  // movemos todo una posición
+}
+arr[0] = ultimo;  // ponemos el último al principio
+
+// Imprimir el array
+for (int num : arr) {
+    System.out.print(num + " ");
+}
+
+===========================================================================
+int[] arr = {1, 2, 3, 4, 5};
+int n = x; // cuántas posiciones mover
+
+for (int k = 0; k < n; k++) {
+    int ultimo = arr[arr.length - 1];  // guardamos el último
+    for (int i = arr.length - 1; i > 0; i--) {
+        arr[i] = arr[i - 1];  // movemos todo una posición
+    }
+    arr[0] = ultimo;  // ponemos el último al principio
+}
+
+// Imprimir el array
+for (int num : arr) {
+    System.out.print(num + " ");
+}
+============================================================================
+para sumarle 1 alos impares
+public class SumarImpares {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3, 4, 5, 6};
+
+        // Sumamos 1 a las posiciones impares
+        for (int i = 1; i < arr.length; i = i + 2) { // i = i + 2 en vez de i += 2
+            arr[i] = arr[i] + 1; // sumamos 1
+        }
+
+        // Imprimimos el array modificado
+        System.out.print("Array modificado: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+
+
+
+===================================================================================
+
+public class ConversionBytes {
+
+    public static void convertirBytes(long totalBytes) {
+        long terabytes = totalBytes / (1024L * 1024 * 1024 * 1024);
+        long restante = totalBytes % (1024L * 1024 * 1024 * 1024);
+
+        long gigabytes = restante / (1024L * 1024 * 1024);
+        restante = restante % (1024L * 1024 * 1024);
+
+        long megabytes = restante / (1024 * 1024);
+        restante = restante % (1024 * 1024);
+
+        long kilobytes = restante / 1024;
+        long bytes = restante % 1024;
+
+        System.out.println("Terabytes: " + terabytes);
+        System.out.println("Gigabytes: " + gigabytes);
+        System.out.println("Megabytes: " + megabytes);
+        System.out.println("Kilobytes: " + kilobytes);
+        System.out.println("Bytes: " + bytes);
+    }
+
+    public static void main(String[] args) {
+        long totalBytes = 1234567890123L; // ejemplo
+        convertirBytes(totalBytes);
+    }
+}
+
+
+
+========================================================================
+
+
+        int[] billetes = {500, 200, 100, 50, 20, 10, 5};
+        getBilletes(802, billetes);
+
+
+ public static void getBilletes(int euros, int[] billetes){
+        System.out.println("Billetes = " + euros );
+        int resto = euros;
+
+        for(int i = 0; i < billetes.length; i++){
+            if(resto >= billetes[i]) {
+                System.out.println(resto / billetes[i] + " Billete de " + billetes[i]);
+                resto = resto % billetes[i];
+            }
+        }
+        System.out.println("Resto: " + resto);
+    }
+==============================================================
+
+
+ublic static void conversionTiempo(int tiempoTotal){
+        int horas = tiempoTotal/3600;
+        int minutos = (tiempoTotal%3600)/60;
+        int segundos = tiempoTotal%60;
+        System.out.println("Horas: " + horas + " Minutos: " + minutos + " Segundos: " + segundos);
+
+
+
+ */
 
 
 
